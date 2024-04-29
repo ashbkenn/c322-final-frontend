@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+    <ul class="topnav">
+      <li><a class="logo" href="index.html"><img src="../assets/FinalProjectLogo.png" alt="Final Project"></a></li>
+      <li class="right"><a href="basket.html"><img src="../assets/cart.svg" alt="Cart"><span id="cart-count">0</span></a></li>
+      <li class="right"><a href="index.html"><img src="../assets/person.svg" alt="Account"></a></li>
+      <li class="right"><a href="login.html">Help</a></li>
+      <li class="right"><a href="login.html">Track Order</a></li>
+    </ul>
+
+    <header class="header">
+      <div class="header-text">
+        <h1>Send Her Blooms</h1>
+        <p>She will love it! Shop All Mother's Day Flowers and Gifts!</p>
+      </div>
+      <div class="header-image">
+        <img src="../assets/bouqs.png" alt="Flower Arrangement">
+      </div>
+    </header>
+
+    <div class="filter-bar">
+      <div class="filters">
+        <label for="flower-type">FILTER</label>
+        <select id="flower-type">
+          <option class="placeholder" disabled selected>Flower Type</option>
+          <!-- Options go here -->
+          <option value="mixed">Mixed</option>
+          <option value="roses">Roses</option>
+          <option value="lilies">Lilies</option>
+          <option value="tulips">Tulips</option>
+          <option value="daisies">Daisies</option>
+        </select>
+    
+        <select id="occasion">
+          <!-- Options go here -->
+          <option class="placeholder" disabled selected>Occasion</option>
+          <option value="mothersday">Mother's Day</option>
+          <option value="birthday">Birthday</option>
+          <option value="thankyou">Thank You</option>
+        </select>
+    
+        <select id="color">
+          <!-- Options go here -->
+          <option class="placeholder" disabled selected>Color</option>
+          <option value="red">Red</option>
+          <option value="yellow">Yellow</option>
+          <option value="green">Green</option>
+          <option value="orange">Orange</option>
+        </select>
+      </div>
+      
+      <div class="sort">
+        <label for="sort">SORT</label>
+        <select id="sort">
+          <option value="price-low-high">Price: Low to High</option>
+          <option value="price-high-low">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+    
+  
+    <div class="product-grid">
+      <!-- Dynamically populated flower items will go here -->
+      <a href="product-details.html?productId=1" class="product-card-link">
+        <div class="product-card">
+          <img src="../assets/SugarRush.jpg" alt="Sugar Rush Bouquet" class="product-image">
+          <div class="product-info">
+            <h3 class="product-name">SUGAR RUSH</h3>
+            <p class="product-price">from $54</p>
+          </div>
+        </div>
+      </a>
+      <a href="product-details.html?productId=2" class="product-card-link">
+        <div class="product-card">
+          <img src="../assets/Lemonade.jpg" alt="Lemonade Bouquet" class="product-image">
+          <div class="product-info">
+            <h3 class="product-name">LEMONADE</h3>
+            <p class="product-price">from $54</p>
+          </div>
+        </div>
+      </a>
+      <a href="product-details.html?productId=3" class="product-card-link">
+        <div class="product-card">
+          <img src="../assets/TheAngels.jpg" alt="The Angels Bouquet" class="product-image">
+          <div class="product-info">
+            <h3 class="product-name">The Angels</h3>
+            <p class="product-price">from $54</p>
+          </div>
+        </div>
+      </a>
+      <a href="product-details.html?productId=4" class="product-card-link">
+        <div class="product-card">
+          <img src="../assets/Unbreakable.jpg" alt="Unbreakable Bouquet" class="product-image">
+          <div class="product-info">
+            <h3 class="product-name">UNBREAKABLE</h3>
+            <p class="product-price">from $54</p>
+          </div>
+        </div>
+      </a>
+      <a href="product-details.html?productId=5" class="product-card-link">
+        <div class="product-card">
+          <img src="../assets/SierraSunset.jpg" alt="Sierra Sunset Bouquet" class="product-image">
+          <div class="product-info">
+            <h3 class="product-name">SIERRA SUNSET</h3>
+            <p class="product-price">from $54</p>
+          </div>
+        </div>
+      </a>
+      <a href=href="product-details.html?productId = 6" class="product-card-link">
+        <div class="product-card">
+          <img src="../assets/Casablanca.jpg" alt="Casablanca Bouquet" class="product-image">
+          <div class="product-info">
+            <h3 class="product-name">CASABLANCA</h3>
+            <p class="product-price">from $54</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  
+    <script src="configuration.js"></script>
+    <script src="script.js"></script> 
+  
+  </body>
+   
+  </body>
+</html>

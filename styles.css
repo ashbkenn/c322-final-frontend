@@ -1,0 +1,133 @@
+.header {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    background-color: #F5E3DD; 
+    padding-left: 20px;
+    color: #46464D;
+  }
+
+  .header p {
+    margin-top: 80px;
+    font-size: 20px;
+  }
+  
+  .header-text {
+    flex: 1;
+    padding-right: 20px;
+  }
+  
+  .header-image {
+    flex: none; 
+    align-self: stretch;
+  }
+  
+  .header-image img {
+    height: 250px;
+    width: auto;
+  }
+
+  .filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .filters, .sort {
+    display: flex;
+    align-items: center;
+  }
+  
+  .filters label, .sort label {
+    margin-right: 10px; 
+    font-weight: bold; 
+  }
+  
+  .filters select, .sort select {
+    padding: 5px;
+    margin-right: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+  }
+ 
+  .sort {
+    margin-left: auto;
+  }
+  
+  @media (max-width: 768px) {
+    .filter-bar {
+      flex-direction: column;
+    }
+  
+    .filters, .sort {
+      width: 100%;
+      justify-content: start;
+      margin-bottom: 10px;
+    }
+  
+    .filters select, .sort select {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
+  
+  #flower-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+  }
+  
+  #cart-count {
+    padding-left: 5px;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1px; /* Spacing between the cards */
+    padding: 0px; /* Padding around the grid */
+  }
+  
+  .product-card {
+    border-radius: 4px; 
+    overflow: hidden; 
+    margin: 10px;
+    width: 400px; 
+  }
+
+  .product-card-link {
+    text-decoration: none; /* Removes underline from links */
+    color: inherit; /* Inherits the text color from the parent */
+  }
+  
+  
+  .product-image {
+    width: 100%; 
+    height: auto; 
+    display: block; 
+  }
+  
+  .product-info {
+    padding: 8px 12px;
+  }
+  
+  .product-name {
+    font-size: 1em; 
+    margin-bottom: 5px;
+  }
+  
+  .product-price {
+    font-size: 0.85em; 
+    color: #555;
+    font-weight: 6%;
+  }
+
+  @media (max-width: 600px) {
+    .product-card {
+      width: 100%; 
+      margin: 10px 0; 
+    }
+  }
+  
