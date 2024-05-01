@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Home</title>
     <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index.css">
   </head>
 
   <body>
@@ -67,67 +67,80 @@
       </div>
     </div>
     
-  
-    <div class="product-grid">
-      <!-- Dynamically populated flower items will go here -->
-      <a href="product-details.html?productId=1" class="product-card-link">
-        <div class="product-card">
-          <img src="../assets/SugarRush.jpg" alt="Sugar Rush Bouquet" class="product-image">
-          <div class="product-info">
-            <h3 class="product-name">SUGAR RUSH</h3>
-            <p class="product-price">from $54</p>
-          </div>
-        </div>
-      </a>
-      <a href="product-details.html?productId=2" class="product-card-link">
-        <div class="product-card">
-          <img src="../assets/Lemonade.jpg" alt="Lemonade Bouquet" class="product-image">
-          <div class="product-info">
-            <h3 class="product-name">LEMONADE</h3>
-            <p class="product-price">from $54</p>
-          </div>
-        </div>
-      </a>
-      <a href="product-details.html?productId=3" class="product-card-link">
-        <div class="product-card">
-          <img src="../assets/TheAngels.jpg" alt="The Angels Bouquet" class="product-image">
-          <div class="product-info">
-            <h3 class="product-name">The Angels</h3>
-            <p class="product-price">from $54</p>
-          </div>
-        </div>
-      </a>
-      <a href="product-details.html?productId=4" class="product-card-link">
-        <div class="product-card">
-          <img src="../assets/Unbreakable.jpg" alt="Unbreakable Bouquet" class="product-image">
-          <div class="product-info">
-            <h3 class="product-name">UNBREAKABLE</h3>
-            <p class="product-price">from $54</p>
-          </div>
-        </div>
-      </a>
-      <a href="product-details.html?productId=5" class="product-card-link">
-        <div class="product-card">
-          <img src="../assets/SierraSunset.jpg" alt="Sierra Sunset Bouquet" class="product-image">
-          <div class="product-info">
-            <h3 class="product-name">SIERRA SUNSET</h3>
-            <p class="product-price">from $54</p>
-          </div>
-        </div>
-      </a>
-      <a href=href="product-details.html?productId = 6" class="product-card-link">
-        <div class="product-card">
-          <img src="../assets/Casablanca.jpg" alt="Casablanca Bouquet" class="product-image">
-          <div class="product-info">
-            <h3 class="product-name">CASABLANCA</h3>
-            <p class="product-price">from $54</p>
-          </div>
-        </div>
-      </a>
-    </div>
-  
-    <script src="configuration.js"></script>
-    <script src="script.js"></script> 
+    <div class="f-container" id="flowerList"></div>
+
+    <div id="list"></div>
+    <script src="configurations.js"></script>
+    <script>
+      let host = getHost();
+      let flowers = [];
+      displayTheFlowers();
+
+      async function getAll() {
+            let response = await fetch(host + "/flowers");
+            if (response.status == 401) {
+                logout();
+            }
+            let result = await response.json();
+            return result;
+        }
+
+      async function displayTheFlowers() {
+        try {
+          let flowersData = await getAll();
+          let list = document.getElementById("list");
+          list.innerHTML = "";
+
+          for (let flower of flowersData) {
+            let div = document.createElement("div");
+            div.id = `${flower.id}`;
+            div.className = "f-card"; 
+            div.onclick = function () {
+              location.href = `addtobasket.html?id=${flower.id}`;
+            };
+            let innerHtml = `
+              <div class="container">
+                <img src="${getHost()}/flowers/${flower.id}/image" alt="${flower.name}">
+                <p>${flower.name}</p>   
+                <p>(from $ ${flower.cost})</p>           
+              </div>`;
+            div.innerHTML = innerHtml;
+            list.appendChild(div);
+          }
+        } catch (error) {
+          console.error("Error displaying flowers:", error);
+        }
+      }
+
+      function filter() {
+        let flowerType = document.querySelector('select[name="flowerType"]').value;
+        let occasion = document.querySelector('select[name="occasion"]').value;
+        let color = document.querySelector('select[name="color"]').value;
+        let sortBy = document.querySelector('select[name="sortBy"]').value;
+
+        let filteredFlowers = flowers.filter(flower => {
+          if (flowerType && flower.type !== flowerType) {
+            return false;
+          }
+          if (occasion && flower.occasion !== occasion) {
+            return false;
+          }
+          if (color && flower.color !== color) {
+            return false;
+          }
+          return true;
+        });
+
+        if (sortBy === "DESC") {
+          filteredFlowers.sort((a, b) => b.cost - a.cost);
+        } else if (sortBy === "ASC") {
+          filteredFlowers.sort((a, b) => a.cost - b.cost);
+        }
+
+        displayTheFlowers(filteredFlowers);
+      }
+
+    </script>
   
   </body>
    

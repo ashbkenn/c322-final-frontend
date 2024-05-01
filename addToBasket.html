@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="addToBasket.css">
+</head>
+<body>
+    <ul class="topnav">
+        <li><a class="logo" href="index.html"><img src="../assets/FinalProjectLogo.png" alt="Final Project"></a></li>
+        <li class="right"><a href="basket.html"><img src="../assets/cart.svg" alt="Cart"><span id="cart-count">0</span></a></li>
+        <li class="right"><a href="index.html"><img src="../assets/person.svg" alt="Account"></a></li>
+        <li class="right"><a href="login.html">Help</a></li>
+        <li class="right"><a href="login.html">Track Order</a></li>
+      </ul>
+  
+    <div class="product-details">
+        <div class="flower-details" id="flowerDetails"></div>
+        <div class="product-info">
+            <!-- <h1>The Angels</h1> -->
+            <div class="product-purchase">
+                <label for="deliveryDate">Delivery:</label>
+                <input type="date" id="delivery" required>
+                <fieldset class="purchasing-options">
+                    <legend>PURCHASING OPTIONS</legend>
+                    <div class="options">
+                        <div class="col">
+                            <div class="row">
+                                <input type="radio" name="purchase-option" value="subscription" class="radioBtn">
+                                <div class="col">
+                                    <div class="ops">
+                                        Start a Subscription: $<span id="subPrice"></span>
+                                    </div>
+                                    <span>Best Value: Up to 30% off + free shipping on subscription deliveries.</span>
+                                    <span>Flexible: Pick your flowers, date & recipient every month, or set it & forget it.</span>
+                                    <span>No Obligations: Skip as often as you like. Cancel anytime.</span>
+                                </div>
+                            </div>
+                            <div class="row2">
+                                <input type="radio" name="purchase-option" value="one-time">
+                                One time purchase: $<span id="oneTimePrice"></span>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="add-to-basket">
+                    <a href="recipientDetails.html" onclick="addtoCart()" class="add-to-basket">ADD TO BASKET</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="configurations.js"></script>
+    <script>
+    let host = getHost();
+
+    window.onload = function() {
+        displayFlowerDetails();
+    };
+
+    async function displayFlowerDetails() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const flowerId = urlParams.get('id');
+        
+        try {
+            const response = await fetch(`${host}/flowers/${flowerId}`);
+            const flowerData = await response.json();
+    
+            const imageUrl = `${host}/flowers/${flowerId}/image`;
+    
+            const flowerDetailsContainer = document.getElementById('flowerDetails');
+            flowerDetailsContainer.innerHTML = `
+                <h2>${flowerData.name}</h2>
+                <img src="${imageUrl}" alt="${flowerData.name}" style="max-width: 25%; height: 5;">
+            `;
+    
+            const updatedPrice = flowerData.cost + 25;
+            const subPrice = flowerData.cost - 10;
+    
+            document.getElementById('oneTimePrice').textContent = updatedPrice;
+            document.getElementById('subPrice').textContent = subPrice;
+
+            localStorage.setItem("flowerName", flowerData.name);
+            localStorage.setItem("flowerImage", imageUrl);
+    
+        } catch (error) {
+            console.error('Error fetching flower details:', error);
+        }
+    }
+
+    function addtoCart() {
+            const oneTimePurchaseOption = document.querySelector('input[name="purchaseOption"][value="oneTimePurchase"]');
+            const subOption = document.querySelector('input[name="purchaseOption"][value="sub"]');
+
+            let selectedPrice = 0;
+            if (oneTimePurchaseOption.checked) {
+                selectedPrice = parseFloat(document.getElementById('oneTimePrice').textContent);
+            } else if (subOption.checked) {
+                selectedPrice = parseFloat(document.getElementById('subPrice').textContent);
+            }
+            console.log("Selected price:", selectedPrice);
+            
+            const deliveryDate = document.getElementById("delivery").value;
+            
+            localStorage.setItem("purchasePrice", selectedPrice);
+            localStorage.setItem("deliveryDate", deliveryDate);
+
+            let cartItem = {
+                flowerId: localStorage.getItem("flowerId"),
+                flowerName: localStorage.getItem("flowerName"),
+                deliveryDate: deliveryDate,
+                purchaseOption: oneTimePurchaseOption.checked ? "oneTimePurchase" : "sub",
+                cost: selectedPrice 
+            };
+
+
+            localStorage.setItem("cartItem", JSON.stringify(cartItem));
+            
+            window.location.href = "recipientDetails.html";
+        }
+    </script>
+</body>
+</html>

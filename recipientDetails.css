@@ -1,0 +1,88 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.namePrice {
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+}
+
+.price {
+    margin-left: auto;
+}
+
+.delivery {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.picture {
+    padding: 20px;
+}
+
+.picture img{
+    height: 150px;
+}
+
+.delivery {
+    padding: 20px;
+}
+
+.delivery b {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+.labelCol1 {
+    margin-right: auto;
+    width: 49%;
+}
+
+.labelCol {
+    margin-left: auto;
+    width: 49%;
+}
+
+input {
+    height: 35px;
+    width: 100%;
+    border: 2px solid lightgrey;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+select {
+    height: 40px;
+    padding: 10px;
+    width: 100%;
+    border: 2px solid lightgrey;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.submit {
+    background-color: #154B3C;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: large;
+    padding-top: 15px;
+    border-radius: 5px;
+}

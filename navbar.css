@@ -23,13 +23,13 @@ ul.topnav {
     text-decoration: none;
   }
   
-  /* ul.topnav li a:hover:not(.active) {background-color: #f8ebcb;} */
-  
-  ul.topnav li a.active {background-color:#af412a; }
-  
   ul.topnav li.right {float: right;}
   
   @media screen and (max-width: 600px) {
     ul.topnav li.right, 
     ul.topnav li {float: none;}
+  }
+
+   #cart-count {
+    padding-left: 5px;
   }
