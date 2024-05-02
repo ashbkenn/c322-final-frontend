@@ -1,7 +1,7 @@
 const mode = 1;
 
 const host_local = "http://localhost:8080";
-const host_remote = "http://localhost:8080";
+const host_remote = "https://database-demo-latest-a5y8.onrender.com";
 
 function getHost() {
   return (mode == 0) ? host_local : host_remote;
