@@ -1,65 +1,52 @@
 .container {
     display: flex;
-    flex-direction: column;
-    width: 70%;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.namePrice {
-    display: flex;
     flex-direction: row;
-    margin-left: 20px;
-}
-
-.price {
-    margin-left: auto;
-}
-
-.delivery {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.row {
-    display: flex;
-    flex-direction: row;
-}
-
-.picture {
+    width: 60%;
+    max-width: 1200px; /* Adjust max-width as needed */
+    margin: 0 auto; /* Center the container horizontally */
     padding: 20px;
 }
 
-.picture img{
-    height: 150px;
+.flower-details {
+    flex: 2;
 }
 
-.delivery {
+.flower-details img {
+    width: 100%; /* Set the width to 100% */
+    max-width: 400px; /* Adjust the max-width as needed */
+    height: auto;
+}
+.form-container {
+    flex: 3;
+}
+
+form {
+    width: 50%;
+}
+
+.form-container .delivery {
+    margin-top: 20px; /* Add margin to separate the form from flower details */
     padding: 20px;
 }
 
-.delivery b {
+.form-container .delivery b {
     font-size: 20px;
     margin-bottom: 20px;
 }
 
-.col {
+.form-container .row {
+    display: flex;
+    flex-direction: row;
+}
+
+.form-container .col {
     display: flex;
     flex-direction: column;
+    width: 50%; /* Adjust width of columns as needed */
 }
 
-.labelCol1 {
-    margin-right: auto;
-    width: 49%;
-}
-
-.labelCol {
-    margin-left: auto;
-    width: 49%;
-}
-
-input {
+.form-container input,
+.form-container select {
     height: 35px;
     width: 100%;
     border: 2px solid lightgrey;
@@ -67,16 +54,7 @@ input {
     border-radius: 5px;
 }
 
-select {
-    height: 40px;
-    padding: 10px;
-    width: 100%;
-    border: 2px solid lightgrey;
-    margin-top: 10px;
-    border-radius: 5px;
-}
-
-.submit {
+.form-container .submit {
     background-color: #154B3C;
     height: 40px;
     text-align: center;
@@ -86,3 +64,24 @@ select {
     padding-top: 15px;
     border-radius: 5px;
 }
+
+input, select {
+    width: 100%;
+}
+
+  
+.continueBtn {
+    display: flex;
+    justify-content: center; 
+    margin-top: 10px;
+    background-color: #154B3C;
+    color: white;
+    padding: 15px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    width: 90%;
+    text-align: center;
+  }

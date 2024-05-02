@@ -4,6 +4,10 @@
     padding: 20px;
 }
 
+flowerDetails flower-details{
+    width: 100px;
+}
+
 .flower-details img {
     width: 100%;
     border-radius: 8px;
@@ -19,12 +23,12 @@
     margin-bottom: 20px;
 }
 
-.product-purchase {
+/* .product-purchase {
     background: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
     height: 70%;
-}
+} */
 
 .product-purchase label,
 .product-purchase button {

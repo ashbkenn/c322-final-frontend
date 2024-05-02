@@ -14,58 +14,40 @@
         <li class="right"><a href="login.html">Track Order</a></li>
     </ul>
   
-    <div class="flower-details" id="flowerDetails"></div>
     <div class="container">
-        <!-- <div class="namePrice">
-            <h2 class="name">THE ANGELS</h2>
-            <h2 class="price"><b>$74</b></h2>
-        </div> -->
-        <div class="row">
-            <!-- <div class="picture">
-                <img src="../assets/TheAngels.jpg" alt="The Angels">
-                <p class="label">Delivery Date</p>
-                <p><span id="deliveryDate"/p>
-            </div> -->
-            <div class="delivery">
-                <div class="col">
-                    <b>RECIPIENT</b>
-                    <div class="row">
-                        <div class="labelCol1">
-                            <label for="recipientFirstName">First Name*:</label>
-                            <input type="text" id="recipientFirstName" required><br><br>
-                        </div>
-                        <div class="labelCol">
-                            <label for="recipientLastName">Last Name*:</label>
-                            <input type="text" id="recipientLastName" required><br><br>
-                        </div>
-                    </div>
-                        <label for="relationship">Relationship*:</label>
-                        <select id="relationship">
-                            <option value="parent">Parent</option>
-                            <option value="friend">Friend</option>
-                            <option value="spouse">Spouse</option>
-                            <option value="other">Other</option>
-                        </select><br><br>
-                </div>
-                <div class="col">
-                    <b>DELIVER TO</b>
-                    <label for="recipientAddress">Address*:</label>
-            <input type="text" id="recipientAddress" required><br><br>
-            <div class="row">
-                <div class="labelCol1">
-                    <label for="recipientApt">Apt/Suite:</label>
-                    <input type="text" id="recipientApt"><br><br>
-                </div>
-                <div class="labelCol">
-                    <label for="recipientCity">City:</label>
-                    <input type="text" id="recipientCity" required><br><br>
-                </div>
-            </div>
-
-            <div class="row">
-            <div class="labelCol1">
-                <label for="recipientState">State*:</label>
-            <select id="recipientState">
+        <div class="flower-details" id="flowerDetails"></div>
+        <form id="deliveryForm">
+        
+        <p>$<span id="purchasePrice"></span></p>
+        <p>Delivery Date: <span id="deliveryDate"></span></p>
+        
+          <h3>Recipient</h3>
+          <label for="firstName">First Name*:</label>
+          <input type="text" id="firstName" required><br><br>
+        
+          <label for="lastName">Last Name*:</label>
+          <input type="text" id="lastName" required><br><br>
+        
+          <label for="relationship">Relationship*:</label>
+          <select id="relationship">
+              <option value="parent">Parent</option>
+              <option value="friend">Friend</option>
+              <option value="spouse">Spouse</option>
+              <option value="other">Other</option>
+          </select><br><br>
+        
+          <h3>DELIVER TO</h3>
+          <label for="address">Address*:</label>
+          <input type="text" id="address" required><br><br>
+        
+          <label for="apt">Apt/Suite:</label>
+          <input type="text" id="apt"><br><br>
+        
+          <label for="city">City:</label>
+          <input type="text" id="city" required><br><br>
+        
+          <label for="state">State*:</label>
+          <select id="state">
               <option value="AL">Alabama</option>
               <option value="AK">Alaska</option>
               <option value="AZ">Arizona</option>
@@ -74,7 +56,7 @@
               <option value="CO">Colorado</option>
               <option value="CT">Connecticut</option>
               <option value="DE">Delaware</option>
-              <option value="DC">Biscuit town</option>
+              <option value="DC">District Of Columbia</option>
               <option value="FL">Florida</option>
               <option value="GA">Georgia</option>
               <option value="HI">Hawaii</option>
@@ -117,16 +99,14 @@
               <option value="WV">West Virginia</option>
               <option value="WI">Wisconsin</option>
               <option value="WY">Wyoming</option>
-            </select><br><br>
-            </div>
-            
-            <div class="labelCol">
-                <label for="recipientZip">Zip*:</label>
-                <input type="text" id="recipientZip" required><br><br>
-            </div>
-        </div>
-        <a class="submit" href="placeOrder.html"><b>CONTINUE</b></a>
-    </div>
+          </select><br><br>
+        
+          <label for="zip">Zip*:</label>
+          <input type="text" id="zip" required><br><br>
+        
+          <a onclick="continueButton()" class="continueBtn">CONTINUE</a>
+    
+      </div>
 
 </body>
 <script src="configurations.js"></script>
@@ -196,14 +176,7 @@ function continueButton() {
         };
 
         localStorage.setItem("info", JSON.stringify(info));
-
-    //     if (isLoggedIn()) {
-    //       window.location.href = "placeorder.html"; 
-    // } else {
-    //       window.location.href = "login.html"; 
-    // }
-    //window.location.href = "placeorder.html"
-    window.location.href = "login.html"
+        window.location.href = "login.html"
     }
 
     function toggleLoginLinks() {
