@@ -1,12 +1,32 @@
 .button {
-    background-color: #04AA6D; 
+    background-color: #154B3C; 
     border: none;
     color: white;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    font-size: large;
+    margin: 60px;
     cursor: pointer;
+    width: 70%;
+    border-radius: 10px;
   }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the start of the cross axis */
+    max-width: 800px; /* Adjust the max-width as needed */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 20px;
+}
+
+.image-container {
+    flex: 1; /* Occupy 1/2 of the container */
+    margin-right: 20px; /* Add some space between the image and the details */
+}
+
+.details-container {
+    flex: 1; /* Occupy 1/2 of the container */
+}
+

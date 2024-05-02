@@ -9,19 +9,16 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="navbar">
-        
-        <a href="cart.html"><i class="fa fa-fw fa-shopping-cart"></i> </a>
-        <li><a href="placeorder.html"><span id="itemCount">1</span></a></li>  
-        <a href="login.html"><i class="fa fa-fw fa-user"></i> </a>
-        <a href="index.html">Help</a>
-        <a href="trackorder.html">Track Order</a> 
-    </div>
-    <a href="index.html" style="font-size: larger; color: orange; text-decoration: none;">Flower.com</a>
+    <ul class="topnav">
+        <li><a class="logo" href="index.html"><img src="../assets/FinalProjectLogo.png" alt="Final Project"></a></li>
+        <li class="right"><a href="placeOrder.html"><img src="../assets/cart.svg" alt="Cart"><span id="cart-count">1</span></a></li>
+        <li class="right"><a href="login.html"><img src="../assets/person.svg" alt="Account"></a></li>
+        <li class="right"><a href="index.html">Help</a></li>
+        <li class="right"><a href="login.html">Track Order</a></li>
+    </ul>
 
     <div id="summary"></div>
-
-    <button class="button" onclick="order()">Order</button>
+    <button class="button" onclick="order()"><b>Place Order</b></button>
 
     
     
@@ -40,49 +37,53 @@
     
 
     summary.innerHTML = `
-    <img src="${localStorage.getItem('flowerImage')}" alt="Flower Image" style="max-width: 25%; height: 5;">
-
-        <h3>Delivery Date</h3>
-        <p>${deliveryDate}</p>
-        <h3>Item Pricing</h3>
-        <p>$${purchasePrice - 25}</p>
-        <h3>Delivery Address</h3>
-        <p>${info.firstName} ${info.lastName}</p>
-        <p>${info.apt ? info.apt + ' ' : ''}${info.address}</p>
-        <p>${info.city} ${info.state} ${info.zip}</p>
-
-        <h3>Subtotal</h3>
-        <p>Delivery: $25.00</p>
-        <p>Delivery Discount: -$${deliveryDiscount}</p>
-        <p>Tax: $0.00</p>
-        <p>Order Total: $${cartItem.cost - deliveryDiscount}</p>
+    <div class="container">
+        <div class="image-container">
+            <img src="${localStorage.getItem('flowerImage')}" alt="Flower Image" style="max-width: 100%; height: auto;">
+        </div>
+        <div class="details-container">
+            <h3>Delivery Date</h3>
+            <p>${deliveryDate}</p>
+            <h3>Item Pricing</h3>
+            <p>$${purchasePrice - 25}</p>
+            <h3>Delivery Address</h3>
+            <p>${info.firstName} ${info.lastName}</p>
+            <p>${info.apt ? info.apt + ' ' : ''}${info.address}</p>
+            <p>${info.city} ${info.state} ${info.zip}</p>
+            <h3>Subtotal</h3>
+            <p>Delivery: $25.00</p>
+            <p>Delivery Discount: -$${deliveryDiscount}</p>
+            <p>Tax: $0.00</p>
+            <p>Order Total: $${cartItem.cost - deliveryDiscount}</p>
+        </div>
+    </div>
+        
     `;
 
-    async function order(){
+    async function order() {
         try {
             let orderData = {
-                flowerId: cartItem.flowerId, 
+                flowerId: cartItem.flowerId,
                 flowerName: cartItem.flowerName,
                 recipientName: `${info.firstName} ${info.lastName}`,
                 totalCost: totalCost,
                 status: "DONE",
-                customerUserName: configuration.isLoggedIn() ? getLoggedInUsername() : null 
+                customerUserName: configuration.isLoggedIn() ? getLoggedInUsername() : null
             };
 
             console.log(orderData);
 
-            let request = {
+            let response = await fetch(`${host}/orders`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
-                    // "Authorization": `Bearer ${configuration.token()}`
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify(orderData)
-            };
-
-            let response = await fetch(`${host}/orders`, request);
+            });
 
             if (response.ok) {
+                let responseData = await response.json();
+                localStorage.setItem("orderId", responseData.id);
                 alert("Order placed successfully!");
                 localStorage.removeItem("cartItem");
                 localStorage.removeItem("delivery");
